@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Mintbase Engineering</title>
+        <title>Spartan Blockchain Solutions</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />

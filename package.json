@@ -16,6 +16,7 @@
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
     "apollo-link-ws": "^1.0.20",
+    "daisyui": "^2.2.0",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "mintbase": "0.3.0",
