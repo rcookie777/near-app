@@ -15,7 +15,7 @@ const FETCH_MINTER_STORE = gql`
       id
     }
   }
-`
+`;
 
 const Minter = () => {
   const { wallet, isConnected, details } = useWallet()
@@ -29,6 +29,8 @@ const Minter = () => {
 
   useEffect(() => {
     if (!isConnected) return
+
+    console.log(`Wallet ID: ${details.contractName}`);
 
     fetchStores()
   }, [isConnected])
@@ -67,6 +69,7 @@ const Minter = () => {
     setIsMinting(false)
 
     wallet.mint(1, data.store, undefined, undefined, undefined)
+
   }
 
   if (!isConnected) return <div>Connect your wallet</div>
@@ -90,7 +93,7 @@ const Minter = () => {
           </label>
 
           <select
-            {...register('store', { required: true })}
+            {...register('store', { required: false })}
             className="text-sm"
           >
             {data?.store.map((store: { id: string }) => (

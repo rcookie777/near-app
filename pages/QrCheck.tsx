@@ -1,15 +1,18 @@
-
-import Navbar from '../components/Navbar'
-import Qr from '../components/Qr'
-import { useWallet } from '../services/providers/MintbaseWalletContext'
 import React, { useState } from "react";
+import { useWallet } from '../services/providers/MintbaseWalletContext'
+import NavBar from '../components/NavBar'
+import BannerSection from '../components/BannerSection';
+import Qr from '../components/Qr'
+import Inventory from '../components/Inventory';
+
 
 
 const QrCheck = () => {
-    return<>
-    <Qr/>
+    return <>
+        <NavBar />
+        <BannerSection />
+        <Inventory />
     </>
 }
 
 export default QrCheck
- 

@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import { useWallet } from '../services/providers/MintbaseWalletContext'
+import { useRouter } from "next/router"
 
 const Header = () => {
+  const router = useRouter()
   const { wallet, isConnected, details } = useWallet()
+
   return (
     <header className="w-full px-6 bg-white">
       <div className="container mx-auto max-w-8xl md:flex justify-between items-center">
@@ -24,20 +27,25 @@ const Header = () => {
               onClick={
                 isConnected
                   ? () => {
-                      wallet?.disconnect()
-                      window.location.reload()
-                    }
+                    wallet?.disconnect()
+                    window.location.reload()
+                  }
                   : () => {
-                      wallet?.connect({ requestSignIn: true })
-                    }
+                    wallet?.connect({ requestSignIn: true })
+                  }
               }
             >
               {isConnected ? 'Disconnect' : 'Connect'}
             </button>
+            <button className="inline-block no-underline bg-black text-white text-sm py-2 px-3"
+              onClick={() => { router.push("/QrCheck"); }}
+            >
+              Inventory
+            </button>
           </div>
         </div>
       </div>
-    </header>
+    </header >
   )
 }
 
