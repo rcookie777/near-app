@@ -1,5 +1,3 @@
-import Navbar from '../components/Navbar'
-
 import { useWallet } from '../services/providers/MintbaseWalletContext'
 
 import Link from 'next/link'

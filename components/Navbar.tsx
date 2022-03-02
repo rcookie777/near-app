@@ -1,51 +1,68 @@
-import Link from 'next/link'
+import { AppBar, Button, Toolbar, Link } from "@mui/material"
+import { makeStyles } from "@mui/styles"
+import { useWallet } from '../services/providers/MintbaseWalletContext'
 
-const Navbar = () => {
+
+const useStyles = makeStyles({
+  appBar: {
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "#FFF",
+    height: 100,
+    borderBottomStyle: "solid",
+    borderBottomWidth: 1,
+    borderBottomColor: "#00000025",
+  },
+  buttonContainer: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  button: {
+    height: 55,
+    width: 165,
+    backgroundColor: "#FFF",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "#4237C7",
+    color: "#4237C7",
+    textTransform: "none",
+    fontSize: 18,
+    fontWeight: 600,
+  },
+});
+
+const NavBar = () => {
+  const classes = useStyles()
+  const { wallet, isConnected, details } = useWallet()
+
+  function handleConnect() {
+    if (isConnected) {
+      wallet?.disconnect()
+      window.location.reload()
+    } else {
+      wallet?.connect({ requestSignIn: true })
+    }
+  }
+
   return (
-    <nav className="w-full bg-white md:pt-0 px-6 shadow-lg relative z-20 border-t border-b border-gray-400">
-      <div className="container mx-auto max-w-4xl md:flex justify-between items-center text-sm md:text-md md:justify-start">
-        <div className="w-full md:w-1/2 text-center md:text-left py-4 flex flex-wrap justify-center items-stretch md:justify-start md:items-start">
-          <a
-            href="#"
-            className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >
-            Home
-          </a>
-          <a
-            href="#"
-            className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >
-            Products
-          </a>
-          <a
-            href="#"
-            className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >
-            About Us
-          </a>
-          <a
-            href="#"
-            className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-gray-400"
-          >
-            News
-          </a>
-          <a
-            href="#"
-            className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline"
-          >
-            Contact
-          </a>
+    <AppBar className={classes.appBar} position="relative" elevation={0}>
+      <Toolbar>
+        <div className={classes.buttonContainer} />
+        <Link style={{ marginRight: 8 }} href="https://spartanblockchain.org/" variant="subtitle1" underline="none">
+          Become a Spartan!
+        </Link>
+        <Link style={{ marginLeft: 8 }} href="/" variant="subtitle1" underline="none">
+          Mint a Ticket
+        </Link>
+        <div className={classes.buttonContainer}>
+          <Button className={classes.button} size="large" onClick={handleConnect}>
+            {isConnected ? "Disconnect" : "Connect"}
+          </Button>
         </div>
-        <div className="w-full md:w-1/2 text-center md:text-right pb-4 md:p-0">
-          <input
-            type="search"
-            placeholder="Search..."
-            className="bg-gray-300 border text-sm p-1"
-          />
-        </div>
-      </div>
-    </nav>
+      </Toolbar>
+    </AppBar>
   )
 }
 
-export default Navbar
+export default NavBar

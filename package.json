@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^4.0.0",
+    "@mui/styles": "^5.4.4",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
@@ -18,6 +22,7 @@
     "apollo-link-ws": "^1.0.20",
     "daisyui": "^2.2.0",
     "deepmerge": "^4.2.2",
+    "gatsby-plugin-material-ui": "^4.0.2",
     "lodash": "^4.17.21",
     "mintbase": "0.3.0",
     "next": "11.0.1",
