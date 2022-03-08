@@ -24,10 +24,35 @@ const useStyles = makeStyles((theme: Theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        
     },
     modalContainer: {
-        backgroundColor: "yellow",
+        // width: 450,
+        backgroundColor: "white",
+        // borderColor: "#4237C7",
+        // borderWidth: 4,
+        // borderStyle: "solid",
+        display: "flex",
+        maxWidth: 450,
+        paddingBottom: 16,
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "#4237C7",
+        borderRadius: 10,
+        boxShadow: "0px 10px 20px 3px #00000026",
     },
+    button:{
+        height: 55,
+        width: 165,
+        backgroundColor: "#FFF",
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "#4237C7",
+        color: "#4237C7",
+        textTransform: "none",
+        fontSize: 18,
+        fontWeight: 600,
+    }
 }))
 
 
@@ -76,9 +101,12 @@ const Inventory = (props: Props) => {
             }}>
                 <Grid className={classes.modalContainer} container direction="column" justifyContent="center" alignItems="center">
                     <Typography variant="h3" align="center">
-                        Can Not Wait To See You At SBIC!
+                        Welcome to SBIC!
                     </Typography>
-                    <Button size="large">
+                    <Button className = {classes.button} size="large" onClick={() => {
+                setModalState(false)
+                setModalBeenOpened(true)
+            }}>
                         Close
                     </Button>
                 </Grid>

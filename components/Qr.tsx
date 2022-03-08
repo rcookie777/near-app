@@ -1,4 +1,4 @@
-import NavBar from './NavBar'
+import NavBar from './Navbar'
 import { useWallet } from '../services/providers/MintbaseWalletContext'
 import React, { useState } from "react";
 

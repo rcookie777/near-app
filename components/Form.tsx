@@ -2,77 +2,64 @@ import { Wallet } from 'mintbase'
 import {useForm} from 'react-hook-form'
 import {useWallet} from '../services/providers/MintbaseWalletContext'
 import { MetadataField } from 'mintbase'
-import Image from '../assets/Panda_Outline.png'
+import { makeStyles } from '@mui/styles'
+import { Button, Grid, Typography, TextField } from '@mui/material'
 
-const  Form = () => {
+type Props = {}
+
+const useStyles = makeStyles({
+    root: {
+        height: 400,
+        backgroundColor: "#00000010",
+    },
+    title: {
+        fontSize: 35,
+        fontWeight: 600,
+        marginBottom: 32,
+    },
+    button: {
+        height: 55,
+        width: 165,
+
+        backgroundColor: "#FFF",
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "#4237C7",
+        color: "#4237C7",
+        textTransform: "none",
+        fontSize: 18,
+        fontWeight: 600,
+        margin: "16px 16px 0px 16px",
+    },
+})
+
+const  Form = (props: Props) => {
+    const classes = useStyles()
     const {wallet,isConnected,details} = useWallet()
-    const {register, handleSubmit,formState: { errors },
- } = useForm()
-
+    const {register, handleSubmit,formState: { errors },} = useForm()
     const onSubmit = async (data: any) => {
-
         if(!isConnected) return
         if(!wallet) return
-
-        const coverImage = 'https://ipfs.io/ipfs/bafybeif5zpfv3pwrwcjrvvcjadq524cusqrz6hqo2e73vffehvr42o5gzm'
-
-        // console.log(data)
-        console.log(coverImage)
-
-        // const {data: uploadResponse, error: uploadError} = 
-        // await wallet?.minter?.uploadField(MetadataField.Media, coverImage)
-        // if(uploadError) {
-        //     console.error(uploadError)
-        // }
-
-        wallet?.minter?.setMetadata({
-            title: data.Name,
-            description: 'SBIC Ticket',
-            media: coverImage,
-        })
-
+        const coverImage = 'https://ipfs.io/ipfs/bafkreid5m5n7wcb64zqyiuhu4l3npv46x3sx3cilc5qy3jvxsjwchscmyu'
+        // wallet?.minter?.setMetadata({
+        //     title: data.Name,
+        //     description: 'SBIC Ticket',
+        //     media: coverImage,
+        // })
         console.log(wallet.minter?.currentMint)
-        wallet.mint(1,"spartantest.mintspace2.testnet",undefined,undefined)
+        wallet.makeOffer("spartantest.mintspace2.testnet","15")
+        console.log()
     }
 
-    
     console.log(isConnected)
     return (<div className="w-full">
-        <form className="bg-white rounded px-5 " onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-2">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Name
-                </label>
-                <input 
-                {...register('name',{required: true})}
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
-                id="inline-full-name" 
-                type="text" 
-                placeholder="Name">
-
-                </input>
-            </div>
-            <div className="mb-2">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Description
-                </label>
-                <input 
-                {...register('description',{required: true})}
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
-                id="inline-full-name" 
-                type="text" 
-                placeholder="description">
-
-                </input>
-            </div>
-            <div className='mb-4'>
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Ticket
-                </label>
-            </div>
-            <input className='bg-black rounded w-full text-white p-2 cursor-pointer' type='submit' value="Mint Ticket "></input>
-        </form>
-        
+         <Grid container className={classes.root} direction="column" justifyContent="center" alignItems="center">
+            <Typography className={classes.title} variant="h4" align="center">
+                Mint a pass to SBIC!
+            </Typography>
+            {/* <TextField {...register('Name',{required: true})} id="filled-basic" label="Name" variant="filled" /> */}
+                {isConnected ? (<Button className={classes.button} size="large" onClick={handleSubmit(onSubmit)}>Mint</Button>):(<Button className={classes.button} size="large" onClick={isConnected ? () => {wallet?.disconnect(); window.location.reload()}: () => {wallet?.connect({ requestSignIn: true })}}>Connect</Button>)}
+        </Grid>
     </div>
     )
 }

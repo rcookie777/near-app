@@ -86,7 +86,7 @@ const TokenCard = (props: Props) => {
                     setTokenImage(thing?.data.thing[0].metadata.media);
 
                     const storeId = thing?.data.thing[0].storeId
-                    if (storeId == "sbic.mintspace2.testnet" && !props.modalState && !props.hasModalBeenOpened) {
+                    if (storeId == "spartan.mintspace2.testnet" && !props.modalState && !props.hasModalBeenOpened) {
                         props.toggleModal(true)
                     }
                 }
@@ -100,7 +100,7 @@ const TokenCard = (props: Props) => {
 
         }
 
-        if (isConnected && tokenImage == "") {
+        if (isConnected) {
             thingFinder()
         }
 

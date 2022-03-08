@@ -7,7 +7,7 @@ type Props = {}
 
 const useStyles = makeStyles({
     root: {
-        height: 400,
+        height: 200,
         backgroundColor: "#00000010",
     },
     title: {

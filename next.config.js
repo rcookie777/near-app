@@ -10,6 +10,7 @@ module.exports = {
       'twitter.com',
       'source.unsplash.com',
       'abs.twimg.com',
+      'ipfs.io',
     ],
   },
 }
