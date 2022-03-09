@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Typography, Modal } from '@mui/material'
+import { CircularProgress, Grid, Typography, Modal } from '@mui/material/'
 import { List } from 'mintbase'
 import React, { useState, useEffect } from 'react'
 import { Theme } from '@mui/material/styles'
@@ -67,7 +67,12 @@ const useStyles = makeStyles((theme: Theme) => ({
         [theme.breakpoints.down(675)]: {
             fontSize: 11,
         },
-
+    },
+    circularProgressContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 350,
     },
 }))
 
@@ -109,9 +114,11 @@ const TokenCard = (props: Props) => {
     return (
         <Grid className={classes.root} item sm={6} xs={12}>
             {isInventoryLoading && (
-                <CircularProgress />
-            )}
-            {!isInventoryLoading && (
+                <div className={classes.circularProgressContainer}>
+                    <CircularProgress />
+                </div>
+             )} 
+             {!isInventoryLoading && (
                 <Grid className={classes.card} container direction="column">
                     <div className={classes.imgContainer}>
                         {tokenImage != "" ? <Image className={classes.img} src={tokenImage} height={250} width={350} objectPosition="center center" objectFit="cover" alt={props.tokenId} /> : <div />}

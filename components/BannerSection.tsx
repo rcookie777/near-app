@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@mui/styles'
+import { Theme } from '@mui/material/styles'
 import { Button, Grid, Typography } from '@mui/material'
 import { useWallet } from '../services/providers/MintbaseWalletContext'
 
 type Props = {}
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: 200,
         backgroundColor: "#00000010",
@@ -14,6 +15,9 @@ const useStyles = makeStyles({
         fontSize: 35,
         fontWeight: 600,
         marginBottom: 32,
+        [theme.breakpoints.down("md")]: {
+            fontSize: 30,
+        },
     },
     button: {
         height: 55,
@@ -27,7 +31,7 @@ const useStyles = makeStyles({
         fontSize: 18,
         fontWeight: 600,
     },
-})
+}))
 
 const BannerSection = (props: Props) => {
     const classes = useStyles()
