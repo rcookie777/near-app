@@ -1,6 +1,5 @@
 import Form from '../components/Form'
 import Header from '../components/Header'
-import NavBar from '../components/Navbar'
 import Banner from '../components/BannerSection'
 import Footer from '../components/Footer'
 

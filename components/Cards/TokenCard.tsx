@@ -100,7 +100,7 @@ const TokenCard = (props: Props) => {
 
         }
 
-        if (isConnected) {
+        if (isConnected&& tokenImage == "") {
             thingFinder()
         }
 
