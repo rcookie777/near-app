@@ -1,11 +1,11 @@
 
 import Form from '../components/Form'
 import Header from '../components/Header'
-import NavBar from '../components/NavBar'
+import Navbar from '../components/Navbar'
 
 const Minter = () => {
     return <>
-        <NavBar />
+        <Navbar />
         <Header />
         <Form />
     </>

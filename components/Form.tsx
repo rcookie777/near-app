@@ -47,10 +47,11 @@ const  Form = (props: Props) => {
         //     media: coverImage,
         // })
         console.log(wallet.minter?.currentMint)
-        wallet.makeOffer("spartantest.mintspace2.testnet","15")
-        console.log()
+        wallet.makeOffer(
+            "0:spartan.mintspace2.testnet",  
+            "1000000000000000000000000",
+            )
     }
-
     console.log(isConnected)
     return (<div className="w-full">
          <Grid container className={classes.root} direction="column" justifyContent="center" alignItems="center">
